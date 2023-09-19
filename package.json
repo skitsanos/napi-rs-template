@@ -9,21 +9,17 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@napi-rs/cli": "^2.16.1",
-    "ava": "^5.3.0"
-  },
-  "ava": {
-    "timeout": "3m"
+    "@napi-rs/cli": "^2.16.3"
   },
   "engines": {
-    "node": ">= 16"
+    "node": ">= 18"
   },
   "scripts": {
     "artifacts": "napi artifacts",
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "ava",
+    "test": "node __test__/index.spec.mjs",
     "universal": "napi universal",
     "version": "napi version"
   },
