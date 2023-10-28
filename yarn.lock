@@ -3,7 +3,7 @@
 
 __metadata:
   version: 8
-  cacheKey: 10
+  cacheKey: 10c0
 
 "@napi-rs/cli@npm:^2.16.3":
   version: 2.16.3
