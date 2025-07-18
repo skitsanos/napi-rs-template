@@ -1,10 +1,11 @@
 {
   "name": "demo-napi",
   "version": "1.0.0",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "napi": {
-    "name": "demo-napi",
+    "binaryName": "demo-napi",
+    "outputDir": "dist",
     "triples": {}
   },
   "license": "MIT",
@@ -16,12 +17,11 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release",
+    "build": "napi build --platform --release --output-dir dist",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "node __test__/index.spec.mjs",
+    "test": "node --test tests/*.test.js",
     "universal": "napi universal",
     "version": "napi version"
-  },
-  "packageManager": "yarn@4.9.2"
+  }
 }
