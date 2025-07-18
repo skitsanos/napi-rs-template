@@ -95,15 +95,21 @@ jobs:
 
   cross-compile:
     name: Cross Platform Build
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        target:
-          - x86_64-unknown-linux-gnu
-          - x86_64-pc-windows-gnu
-          - x86_64-apple-darwin
-          - aarch64-apple-darwin
-          - aarch64-unknown-linux-gnu
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-pc-windows-gnu
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+    
+    runs-on: ${{ matrix.os }}
     
     steps:
     - uses: actions/checkout@v4
@@ -116,6 +122,11 @@ jobs:
     - name: Install cross-compilation dependencies
       if: matrix.target == 'x86_64-pc-windows-gnu'
       run: sudo apt-get update && sudo apt-get install -y gcc-mingw-w64-x86-64
+      
+    - name: Install cross for Linux ARM64
+      if: matrix.target == 'aarch64-unknown-linux-gnu'
+      run: |
+        cargo install cross --git https://github.com/cross-rs/cross
         
     - name: Cache cargo registry
       uses: actions/cache@v4
@@ -124,10 +135,15 @@ jobs:
           ~/.cargo/registry
           ~/.cargo/git
           target
-        key: ${{ runner.os }}-${{ matrix.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        key: ${{ matrix.os }}-${{ matrix.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
         
     - name: Build for ${{ matrix.target }}
-      run: cargo build --release --target ${{ matrix.target }}
+      run: |
+        if [ "${{ matrix.target }}" = "aarch64-unknown-linux-gnu" ]; then
+          cross build --release --target ${{ matrix.target }}
+        else
+          cargo build --release --target ${{ matrix.target }}
+        fi
       
     - name: Verify binary was created
       run: |
