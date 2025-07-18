@@ -197,6 +197,24 @@ describe('sum function', () => {
 
 The template includes a comprehensive CI/CD pipeline:
 
+#### Manual Workflow Triggers
+
+You can manually trigger the CI workflow using GitHub CLI:
+
+```bash
+# Trigger the workflow on current branch
+gh workflow run ci.yml
+
+# Trigger with debug mode enabled
+gh workflow run ci.yml -f debug_enabled=true
+
+# View workflow runs
+gh run list
+
+# Watch the latest run
+gh run watch
+```
+
 - **Multi-platform testing**: Ubuntu, Windows, macOS
 - **Node.js matrix**: Versions 18, 20, 22
 - **Security auditing**: Automated dependency scanning
@@ -332,6 +350,26 @@ npm install
 cargo fmt --all -- --check
 cargo clippy --all-targets --all-features -- -D warnings
 npm test
+```
+
+### GitHub CLI Integration
+
+```bash
+# Check workflow status
+gh workflow list
+gh run list --limit 5
+
+# Trigger CI manually
+gh workflow run ci.yml
+
+# Create a pull request
+gh pr create --title "feat: add new feature" --body "Description of changes"
+
+# View PR checks
+gh pr checks
+
+# Merge PR after CI passes
+gh pr merge --squash
 ```
 
 ## License
