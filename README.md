@@ -218,17 +218,16 @@ gh run watch
 - **Multi-platform testing**: Ubuntu, Windows, macOS
 - **Node.js matrix**: Versions 18, 20, 22
 - **Security auditing**: Automated dependency scanning
-- **Cross-compilation**: 5 different target architectures
+- **Native platform builds**: Linux x64, macOS x64/ARM64
 - **Code quality**: Formatting, linting, and type checking
 
 ### Supported Platforms
 
 | Platform | Architecture | Status |
 |----------|-------------|---------|
-| Linux | x64, ARM64, ARM | ✅ |
-| Windows | x64, x86, ARM64 | ✅ |
+| Linux | x64 | ✅ |
 | macOS | x64, ARM64 (Apple Silicon) | ✅ |
-| FreeBSD | x64, ARM64 | ✅ |
+| Windows | x64 (via test matrix) | ✅ |
 
 ## Deployment
 

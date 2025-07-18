@@ -7,14 +7,14 @@ use napi::Result;
 extern crate napi_derive;
 
 /// Adds two 32-bit integers with overflow checking
-/// 
+///
 /// # Arguments
 /// * `a` - First integer
 /// * `b` - Second integer
-/// 
+///
 /// # Returns
 /// * `Result<i32>` - Sum of a and b, or error if overflow occurs
-/// 
+///
 /// # Errors
 /// Returns an error if integer overflow occurs during addition
 #[napi]
@@ -25,7 +25,7 @@ pub fn sum(a: i32, b: i32) -> Result<i32> {
 }
 
 /// Returns a greeting message
-/// 
+///
 /// # Returns
 /// * `String` - A greeting message
 #[napi]
