@@ -209,7 +209,7 @@ describe('sum function', () => {
 
 ### GitHub Actions Workflow
 
-The template includes a comprehensive CI/CD pipeline:
+The template includes a comprehensive CI/CD pipeline with cross-platform compatibility:
 
 #### Manual Workflow Triggers
 

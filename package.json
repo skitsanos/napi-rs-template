@@ -20,7 +20,7 @@
     "build": "napi build --platform --release --output-dir dist",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "node --test tests/*.test.js",
+    "test": "node --test \"tests/**/*.test.js\"",
     "universal": "napi universal",
     "version": "napi version"
   }
