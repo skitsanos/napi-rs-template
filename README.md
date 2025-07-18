@@ -170,6 +170,9 @@ npm test -- --verbose
 
 # Run specific test file
 node --test tests/napi.test.js
+
+# Run all tests in tests directory (alternative)
+find tests -name "*.test.js" -exec node --test {} \;
 ```
 
 ### Test Structure
