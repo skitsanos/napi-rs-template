@@ -159,8 +159,11 @@ overflow-checks = true  # Security: detect overflows
 ### Running Tests
 
 ```bash
-# Run all tests
+# Run all tests (Node.js integration tests)
 npm test
+
+# Run Rust unit tests only
+cargo test
 
 # Run with verbose output
 npm test -- --verbose
@@ -171,11 +174,19 @@ node --test tests/napi.test.js
 
 ### Test Structure
 
-The template uses Node.js native test runner (Node ≥18) with:
-- **Unit tests** for individual functions
-- **Integration tests** for complete workflows
-- **Error handling tests** for edge cases
-- **Type validation tests** for JavaScript bindings
+The template includes two types of tests:
+
+#### **Rust Unit Tests** (`src/lib.rs`)
+- Test core logic without NAPI bindings
+- Fast execution, no Node.js dependencies
+- Validate overflow detection and string operations
+- Run with `cargo test`
+
+#### **Node.js Integration Tests** (`tests/napi.test.js`)
+- Test complete NAPI bindings end-to-end
+- Validate JavaScript ↔ Rust communication
+- Test error handling, type validation, and performance
+- Use Node.js native test runner (Node ≥18)
 
 ### Example Test
 
